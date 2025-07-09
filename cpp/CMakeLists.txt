@@ -1,4 +1,4 @@
-set(PROJECT_NAME MyProject)
+set(PROJECT_NAME <NAME>)
 
 cmake_minimum_required(VERSION 4.0)
 
