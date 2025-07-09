@@ -1,0 +1,111 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "Default",
+      "hidden": true,
+      "description": "Sets Ninja generator, build and install directory",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/toolchain-${presetName}.cmake",
+      "cacheVariables": {
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/bin/${presetName}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/bin/${presetName}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/bin/${presetName}",
+        "CMAKE_CONFIG_NAME": "${presetName}",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "release-clang-linux",
+      "description": "Release build with Clang toolchain for linux",
+      "inherits": "Default",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug-clang-linux",
+      "description": "Debug build with Clang toolchain for linux",
+      "inherits": "Default",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release-mingw-windows",
+      "description": "",
+      "inherits": "Default",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-release-clang-linux",
+      "description": "Release build with Clang toolchain for linux",
+      "configurePreset": "release-clang-linux"
+    },
+    {
+      "name": "build-debug-clang-linux",
+      "description": "Debug build with Clang toolchain for linux",
+      "configurePreset": "debug-clang-linux"
+    },
+    {
+      "name": "build-release-mingw-windows",
+      "description": "Debug build with Clang toolchain for linux",
+      "configurePreset": "release-mingw-windows"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "wflow-release-clang-linux",
+      "description": "",
+      "displayName": "",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "release-clang-linux"
+        },
+        {
+          "type": "build",
+          "name": "build-release-clang-linux"
+        }
+      ]
+    },
+    {
+      "name": "wflow-debug-clang-linux",
+      "description": "",
+      "displayName": "",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "debug-clang-linux"
+        },
+        {
+          "type": "build",
+          "name": "build-debug-clang-linux"
+        }
+      ]
+    },
+    {
+      "name": "wflow-release-mingw-windows",
+      "description": "",
+      "displayName": "",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "release-mingw-windows"
+        },
+        {
+          "type": "build",
+          "name": "build-release-mingw-windows"
+        }
+      ]
+    }
+  ]
+}
