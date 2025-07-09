@@ -1,0 +1,13 @@
+.cache/
+
+bin/
+build/
+vcpkg_installed/
+OUT/
+
+.gitignore
+.clang-format
+.clangd
+
+compile_commands.json
+run.sh
