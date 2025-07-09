@@ -46,8 +46,11 @@ copy_repo_template() {
 mkdir .temp
 git clone git@github.com:EzraKirn/mkprj.git .temp
 cp -r .temp/$template/* .
-cp -r .temp/$template/.* .
-cp -r .temp/lisenses/$license ./LICENSE
+cp -r .temp/clangFormats/$template ./.clang-format
+cp -r .temp/ignores/$template ./.gitignore
+cp -r .temp/licenses/$license ./LICENSE
+sed -i "s/$(date +%Y)/2025/g; s/<OWNER>/$author/g" LICENSE
+
 rm -rf .temp
 rm ./**/.gitkeep
 }
@@ -58,8 +61,9 @@ main(){
 
   mkdir $name
   cd $name
-
   copy_repo_template
+  ./postBuild.sh
+  rm postBuild.sh
 }
 
 main "$@"
