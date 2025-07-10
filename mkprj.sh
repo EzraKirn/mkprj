@@ -53,6 +53,7 @@ copy_repo_template() {
 
   rm -rf .temp
   rm ./**/.gitkeep
+  wget -O README.md https://github.com/othneildrew/Best-README-Template/blob/main/BLANK_README.md
 }
 
 main(){
