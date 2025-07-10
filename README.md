@@ -113,7 +113,7 @@ Templates **do not install dependencies** like `clang`, `cmake`, or `python` —
 To download and set the script as executable:
 
 ```sh
-wget https://github.com/EzraKirn/mkprj/blob/main/mkprj.sh
+wget https://raw.githubusercontent.com/EzraKirn/mkprj/refs/heads/main/mkprj.sh
 chmod +x mkprj.sh
 ```
 
