@@ -113,7 +113,7 @@ create_prj_dir() {
 
 copy_templates() {
   mkdir .temp
-  git clone git@github.com:EzraKirn/mkprj.git .temp
+  git clone --quiet git@github.com:EzraKirn/mkprj.git .temp > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     echo "Error: Failed to clone template repository."
     exit 1
@@ -129,7 +129,7 @@ copy_license() {
 }
 
 copy_readme() {
-  wget -O README.md https://raw.githubusercontent.com/othneildrew/Best-README-Template/main/BLANK_README.md
+  wget -q -O README.md https://raw.githubusercontent.com/othneildrew/Best-README-Template/main/BLANK_README.md
 }
 
 cleanup() {
