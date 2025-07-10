@@ -1,3 +1,5 @@
+# This file will collec all used define files and will compile them into shared liblary
+
 message(STATUS "Colecting includes")
 
 # Collect all .cpp files in src/ automatically
