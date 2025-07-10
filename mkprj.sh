@@ -150,6 +150,7 @@ main() {
     source ./postBuild.sh
   fi
   cleanup
+  git init -b main
 }
 
 main "$@"
