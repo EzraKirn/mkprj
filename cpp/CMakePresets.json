@@ -61,6 +61,22 @@
       "configurePreset": "release-mingw-windows"
     }
   ],
+  "packagePresets": [
+    {
+      "name": "pack-release-clang-linux",
+      "configurePreset": "release-clang-linux",
+      "generators": [
+        "ZIP"
+      ]
+    },
+    {
+      "name": "pack-release-mingw-windows",
+      "configurePreset": "release-mingw-windows",
+      "generators": [
+        "ZIP"
+      ]
+    }
+  ]
   "workflowPresets": [
     {
       "name": "wflow-release-clang-linux",
@@ -74,6 +90,10 @@
         {
           "type": "build",
           "name": "build-release-clang-linux"
+        },
+        {
+          "type": "package",
+          "name": "pack-release-clang-linux"
         }
       ]
     },
@@ -104,6 +124,10 @@
         {
           "type": "build",
           "name": "build-release-mingw-windows"
+        },
+        {
+          "type": "package",
+          "name": "pack-release-mingw-windows"
         }
       ]
     }

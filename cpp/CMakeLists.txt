@@ -4,13 +4,14 @@ cmake_minimum_required(VERSION 4.0)
 
 project(
   ${PROJECT_NAME}
+  
   VERSION 0.1.0
   LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- maine xecutable ---
+# --- main executable ---
 add_executable(${PROJECT_NAME} main.cpp)
 
 # --- Add custom CMake modules directory ---
@@ -39,6 +40,9 @@ target_link_directories(  ${PROJECT_NAME}
                               ${PROJECT_NAME}Include
                               ${XLSXWRITER_LIBRARY_DIRS}
                               ${RAPIDCSV_INCLUDE_DIRS})
+
+# --- packaging setup ---
+include(pack)
 
 # --- post build scripts ---
 include(post_build)
