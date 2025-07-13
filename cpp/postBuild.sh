@@ -12,3 +12,6 @@ CompileFlags:
 EOF
 
 sed -i "s/<NAME>/$name/g" CMakeLists.txt
+
+git submodule add https://github.com/google/googletest.git submodules/googletest
+git submodule update --init --recursive
