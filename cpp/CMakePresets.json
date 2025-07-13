@@ -80,7 +80,7 @@
         "ZIP"
       ]
     }
-  ]
+  ],
   "workflowPresets": [
     {
       "name": "wflow-release-clang-linux",
