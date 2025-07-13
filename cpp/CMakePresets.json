@@ -21,7 +21,6 @@
       "description": "Release build with Clang toolchain for linux",
       "inherits": "Default",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-linux",
         "CMAKE_BUILD_TYPE": "Release"
       }
     },
@@ -30,7 +29,6 @@
       "description": "Debug build with Clang toolchain for linux",
       "inherits": "Default",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-linux",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
@@ -39,7 +37,6 @@
       "description": "",
       "inherits": "Default",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }
@@ -59,6 +56,13 @@
       "name": "build-release-mingw-windows",
       "description": "Debug build with Clang toolchain for linux",
       "configurePreset": "release-mingw-windows"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-debug-clang-linux",
+      "description": "Test on debug build with Clang toolchain for linux",
+      "configurePreset": "debug-clang-linux"
     }
   ],
   "packagePresets": [
@@ -109,6 +113,10 @@
         {
           "type": "build",
           "name": "build-debug-clang-linux"
+        },
+        {
+          "type": "test",
+          "name": "test-debug-clang-linux"
         }
       ]
     },

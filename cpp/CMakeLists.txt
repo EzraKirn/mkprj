@@ -1,48 +1,34 @@
 set(PROJECT_NAME <NAME>)
+set(PROJECT_VERSION 0.0.1)
 
 cmake_minimum_required(VERSION 4.0)
 
 project(
   ${PROJECT_NAME}
-  
-  VERSION 0.1.0
-  LANGUAGES CXX)
+    VERSION ${PROJECT_VERSION} 
+    LANGUAGES CXX
+)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- main executable ---
-add_executable(${PROJECT_NAME} main.cpp)
-
 # --- Add custom CMake modules directory ---
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(script_updateSubmodules)
 
-# --- includes ---
-include(includes)
 
-message(STATUS "Building in configuration: ${CMAKE_CONFIG_NAME}")
+# --- main executable ---
+add_executable(            ${PROJECT_NAME} main.cpp)
 
-target_include_directories(${PROJECT_NAME}
-                            PUBLIC 
-                              ${PROJECT_NAME}Include 
-                              ${XLSXWRITER_INCLUDE_DIRS}
-                              ${RAPIDCSV_INCLUDE_DIRS})
+# --- adding users defined sources and headers to main executable ---
+include(module_includes)
+target_sources(            ${PROJECT_NAME} PRIVATE ${PROJECT_SOURCES}) 
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/inc)
 
-target_link_libraries(    ${PROJECT_NAME}
-                            PRIVATE 
-                              ${PROJECT_NAME}Include
-                              fmt::fmt
-                              ${XLSXWRITER_LIBRARIES}
-                              ${XLSXWRITER_LDFLAGS_OTHER})
+include(module_packages)
+# target_link_libraries(     ${PROJECT_NAME} PRIVATE )
 
-target_link_directories(  ${PROJECT_NAME}
-                            PRIVATE
-                              ${PROJECT_NAME}Include
-                              ${XLSXWRITER_LIBRARY_DIRS}
-                              ${RAPIDCSV_INCLUDE_DIRS})
-
-# --- packaging setup ---
-include(pack)
+include(module_testing)
 
 # --- post build scripts ---
-include(post_build)
+include(script_postBuild)
