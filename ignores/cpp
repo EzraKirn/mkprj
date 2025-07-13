@@ -1,13 +1,20 @@
+# Build artifacts
+build/
+bin/
 .cache/
 
-bin/
-build/
-vcpkg_installed/
-OUT/
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+CMakeUserPresets.json
 
-.gitignore
+# Test outputs
+test/*.out
+test/*.log
+
+# clang setup
 .clang-format
 .clangd
-
-compile_commands.json
-run.sh
