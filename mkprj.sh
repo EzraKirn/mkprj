@@ -146,6 +146,7 @@ main() {
   copy_templates
   copy_license
   copy_readme
+  git init -b main
   if [ -f ./postBuild.sh ]; then
     source ./postBuild.sh
   fi
